@@ -5,6 +5,9 @@ kind: ServiceAccount
 metadata:
   name: mongodb-enterprise-operator
   namespace: mongodb
+# Adding imagePullSecrets 
+imagePullSecrets:
+ - name: openshift-pull-secret
 ---
 # Source: enterprise-operator/templates/operator-roles.yaml
 kind: ClusterRoleBinding
@@ -114,6 +117,9 @@ kind: ServiceAccount
 metadata:
   name: mongodb-enterprise-appdb
   namespace: mongodb
+# Adding imagePullSecrets 
+imagePullSecrets:
+ - name: openshift-pull-secret
 ---
 # Source: enterprise-operator/templates/database-roles.yaml
 apiVersion: v1
@@ -121,6 +127,9 @@ kind: ServiceAccount
 metadata:
   name: mongodb-enterprise-database-pods
   namespace: mongodb
+# Adding imagePullSecrets 
+imagePullSecrets:
+ - name: openshift-pull-secret
 ---
 # Source: enterprise-operator/templates/database-roles.yaml
 apiVersion: v1
@@ -128,6 +137,9 @@ kind: ServiceAccount
 metadata:
   name: mongodb-enterprise-ops-manager
   namespace: mongodb
+# Adding imagePullSecrets 
+imagePullSecrets:
+ - name: openshift-pull-secret
 ---
 # Source: enterprise-operator/templates/database-roles.yaml
 kind: Role

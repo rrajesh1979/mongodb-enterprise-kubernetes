@@ -1,0 +1,28 @@
+apiVersion: mongodb.com/v1
+kind: MongoDBOpsManager
+metadata:
+  name: ops-manager
+  namespace: mongodb
+spec:
+  replicas: 1
+  version: 4.4.4
+  adminCredentials: ops-manager-admin-secret
+  externalConnectivity:
+    type: NodePort
+  applicationDatabase:
+    members: 3
+    version: 4.4.4-ent
+  configuration:
+    mms.ignoreInitialUiSetup: "true"
+    mms.fromEmailAddr: "jane.doe@example.com"
+    mms.replyToEmailAddr: "jane.doe@example.com"
+    mms.adminEmailAddr: "jane.doe@example.com"
+    mms.mail.transport: "smtp"
+    mms.mail.hostname: "example.com"
+    mms.mail.port: "25"
+  backup:
+    enabled: true
+    opLogStores:
+    - name: oplog1
+      mongodbResourceRef:
+        name: mongodb-bkp-cluster
