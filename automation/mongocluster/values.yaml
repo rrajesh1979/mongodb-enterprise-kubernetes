@@ -19,11 +19,11 @@ mongocluster:
 opsmanager:
   secret:
     name: ops-manager-api-key
-    privateKey: "4c399a66-08e0-41bd-9c5d-2709eab8037c"
-    publicKey: "PJYTCLRD"
+    privateKey: "7b37c9ba-e1eb-4fb5-8a75-f2b4316116b9"
+    publicKey: "YZIESKIH"
   configMap:
     name: ops-manager-configmap
   baseUrl: "http://finnova-ops-manager-svc.mongodb.svc.cluster.local:8080"
-  orgId: "6216e32e33d04a3eb5f92141"
+  orgId: "621701ff6433037e690c6015"
 
 namespace: mongodb-dev
