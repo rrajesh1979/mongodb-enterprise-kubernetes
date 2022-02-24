@@ -54,8 +54,3 @@ oc port-forward svc/payment-dev-svc 27017:27017 -n finnova-dev
 Access using Compass
 
 ```
-
-```
-helm install finnova-enterprise-operator . --namespace=mongodb --create-namespace --set operator.watchNamespace="mongodb\,mongodb-dev"
-
-```
