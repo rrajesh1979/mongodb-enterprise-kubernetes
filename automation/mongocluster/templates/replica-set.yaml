@@ -1,0 +1,24 @@
+apiVersion: mongodb.com/v1
+kind: MongoDB
+metadata:
+  name: "{{ .Values.mongocluster.name }}"
+  namespace: "{{ .Values.namespace }}"
+spec:
+  members: 3
+  version: "{{ .Values.mongocluster.version }}"
+  type: ReplicaSet
+  security:
+    authentication:
+      enabled: true
+      modes: ["SCRAM"]
+      ignoreUnknownUsers: true
+  opsManager:
+    configMapRef:
+      name: "{{ .Values.opsmanager.configMap.name }}"
+  credentials: "{{ .Values.opsmanager.secret.name }}"
+  persistent: true
+  podSpec:
+    persistence:
+      single:
+        storage: "{{ .Values.mongocluster.storage }}"
+        storageClass: "{{ .Values.mongocluster.storageclass }}"

@@ -16,7 +16,6 @@ oc login $CLUSTER_URL --username $CLUSTER_ADMIN_USER --password $CLUSTER_ADMIN_P
 
 # Create namespace for MongoDB
 oc create namespace mongodb
-
 # Set context
 oc config set-context $(oc config current-context) --namespace=mongodb
 
@@ -123,9 +122,10 @@ secret/ops-manager-admin-key created
 
 oc create configmap ops-manager-configmap \
   --from-literal="baseUrl=http://ops-manager-svc.mongodb.svc.cluster.local:8080" \
-  --from-literal="projectName=$OM_PROJECT" \
   --from-literal="orgId=$OM_ORG_ID"
 configmap/ops-manager-configmap created
+
+##   --from-literal="projectName=$OM_PROJECT" \
 
 # Create MongoDB Cluster
 oc apply -f replica-set.yaml

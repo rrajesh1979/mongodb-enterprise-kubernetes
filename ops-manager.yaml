@@ -12,6 +12,11 @@ spec:
   applicationDatabase:
     members: 3
     version: 4.4.4-ent
+    podSpec:
+      persistence:
+        single:
+          storage: 16Gi
+          storageClass: gp2
   configuration:
     mms.ignoreInitialUiSetup: "true"
     mms.fromEmailAddr: "jane.doe@example.com"

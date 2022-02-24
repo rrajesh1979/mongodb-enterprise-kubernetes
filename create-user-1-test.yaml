@@ -1,0 +1,23 @@
+apiVersion: mongodb.com/v1
+kind: MongoDBUser
+metadata:
+  name: user-1
+spec:
+  passwordSecretKeyRef:
+    name: user-1-password
+    # Match to metadata.name of the User Secret
+    key: password
+  username: "user-1"
+  db: "admin" #
+  mongodbResourceRef:
+    name: test-mongodb-cluster
+    # Match to MongoDB resource using authenticaiton
+  roles:
+  - db: "admin"
+    name: "clusterAdmin"
+  - db: "admin"
+    name: "userAdminAnyDatabase"
+  - db: "admin"
+    name: "readWrite"
+  - db: "admin"
+    name: "userAdminAnyDatabase"
