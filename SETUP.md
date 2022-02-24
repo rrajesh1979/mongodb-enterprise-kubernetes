@@ -93,12 +93,7 @@ secret/ops-manager-admin-key created
 # Get OrgID from Ops Manager Console
 
 oc create configmap ops-manager-configmap \
-<<<<<<< HEAD
   --from-literal="baseUrl=http://ops-manager-svc.mongodb.svc.cluster.local:8080" \
-=======
-  --from-literal="baseUrl=$BASE_URL" \
-  --from-literal="projectName=$OM_PROJECT" \
->>>>>>> 722ef1e60aeecf8d43c094d0eb3854bed09771a1
   --from-literal="orgId=$OM_ORG_ID"
 configmap/ops-manager-configmap created
 
