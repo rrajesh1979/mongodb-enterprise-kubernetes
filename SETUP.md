@@ -84,8 +84,8 @@ Handling connection for 8080
 ### Continue Step 6 from documentation
 oc -n mongodb \
   create secret generic ops-manager-admin-key \
-  --from-literal="publicKey=$OM_PUBLICKEY" \
-  --from-literal="privateKey=$OM_PRIVATEKEY"
+  --from-literal="publicKey=QRUZEXPW" \
+  --from-literal="privateKey=7c2e565a-ea23-41d9-9043-1855935923d9"
 secret/ops-manager-admin-key created
 
 # Get Ops Manager URL
@@ -93,8 +93,9 @@ secret/ops-manager-admin-key created
 # Get OrgID from Ops Manager Console
 
 oc create configmap ops-manager-configmap \
-  --from-literal="baseUrl=http://ops-manager-svc.mongodb.svc.cluster.local:8080" \
-  --from-literal="orgId=$OM_ORG_ID"
+  --from-literal="baseUrl=http://finnova-ops-manager-svc.finnova-ops-manager.svc.cluster.local:8080" \
+  --from-literal="orgId=62170d239121f020bd55f344" \
+  -n mongodb
 configmap/ops-manager-configmap created
 
 ##   --from-literal="projectName=$OM_PROJECT" \

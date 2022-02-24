@@ -7,11 +7,11 @@ spec:
   members: 3
   version: "{{ .Values.mongocluster.version }}"
   type: ReplicaSet
-  security:
-    authentication:
-      enabled: true
-      modes: ["SCRAM"]
-      ignoreUnknownUsers: true
+  # security:
+  #   authentication:
+  #     enabled: true
+  #     modes: ["SCRAM"]
+  #     ignoreUnknownUsers: true
   opsManager:
     configMapRef:
       name: "{{ .Values.opsmanager.configMap.name }}"

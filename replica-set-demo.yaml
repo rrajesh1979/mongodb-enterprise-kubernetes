@@ -1,34 +1,18 @@
 apiVersion: mongodb.com/v1
 kind: MongoDB
 metadata:
-  name: demo-mongodb-cluster-2
+  name: demo-mongodb-cluster
   namespace: mongodb
 spec:
   members: 3
   version: 4.4.4-ent
   type: ReplicaSet
-  authentication:
-    enabled: true
-    modes: 
-     - "SHA"
-     - "SCRAM"
+  # security:
+  #   authentication:
+  #     enabled: true
+  #     modes: ["SHA", "SCRAM"]
   opsManager:
     configMapRef:
-      name: ops-manager-configmap-2
+      name: ops-manager-configmap
   credentials: ops-manager-admin-key
   persistent: true
-  # podSpec:
-  #   podTemplate:
-  #     spec:
-  #       containers:
-  #       - name: mongodb-enterprise-database
-  #         resources:
-  #           limits:
-  #             cpu: 2
-  #             memory: 1.5G
-  #           requests:
-  #             cpu: 1
-  #             memory: 1G
-  #           persistence:
-  #             single:
-  #               storage: 16Gi
