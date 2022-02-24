@@ -4,7 +4,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: mongodb-enterprise-operator
-  namespace: mongodb
+  namespace: "{{ .Values.namespace }}"
 # Adding imagePullSecrets
 imagePullSecrets:
   - name: "{{ .Values.openshift.imagePullSecret }}"
@@ -21,14 +21,14 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: mongodb-enterprise-operator
-    namespace: mongodb
+    namespace: "{{ .Values.namespace }}"
 ---
 # Source: enterprise-operator/templates/operator-roles.yaml
 kind: ClusterRole #Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: mongodb-enterprise-operator
-  namespace: mongodb
+  namespace: "{{ .Values.namespace }}"
 rules:
   - apiGroups:
       - ""
@@ -101,7 +101,7 @@ kind: ClusterRoleBinding #RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: mongodb-enterprise-operator
-  namespace: mongodb
+  namespace: "{{ .Values.namespace }}"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole #Role
@@ -109,14 +109,14 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: mongodb-enterprise-operator
-    namespace: mongodb
+    namespace: "{{ .Values.namespace }}"
 ---
 # Source: enterprise-operator/templates/database-roles.yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: mongodb-enterprise-appdb
-  namespace: mongodb
+  namespace: "{{ .Values.namespace }}"
 # Adding imagePullSecrets
 imagePullSecrets:
   - name: "{{ .Values.openshift.imagePullSecret }}"
@@ -126,7 +126,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: mongodb-enterprise-database-pods
-  namespace: mongodb
+  namespace: "{{ .Values.namespace }}"
 # Adding imagePullSecrets
 imagePullSecrets:
   - name: "{{ .Values.openshift.imagePullSecret }}"
@@ -136,7 +136,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: mongodb-enterprise-ops-manager
-  namespace: mongodb
+  namespace: "{{ .Values.namespace }}"
 # Adding imagePullSecrets
 imagePullSecrets:
   - name: "{{ .Values.openshift.imagePullSecret }}"
@@ -146,7 +146,7 @@ kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: mongodb-enterprise-appdb
-  namespace: mongodb
+  namespace: "{{ .Values.namespace }}"
 rules:
   - apiGroups:
       - ""
@@ -168,7 +168,7 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: mongodb-enterprise-appdb
-  namespace: mongodb
+  namespace: "{{ .Values.namespace }}"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -176,7 +176,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: mongodb-enterprise-appdb
-    namespace: mongodb
+    namespace: "{{ .Values.namespace }}"
 ---
 # Source: enterprise-operator/templates/operator.yaml
 apiVersion: apps/v1

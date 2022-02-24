@@ -10,7 +10,7 @@ user:
   name: user-dev
 
 mongocluster:
-  name: mongodb-cluster-dev
+  name: payment-dev
   version: 4.4.4-ent
   members: 3
   storageclass: gp2
@@ -19,11 +19,11 @@ mongocluster:
 opsmanager:
   secret:
     name: ops-manager-api-key
-    privateKey: "7b37c9ba-e1eb-4fb5-8a75-f2b4316116b9"
-    publicKey: "YZIESKIH"
+    privateKey: "7c2e565a-ea23-41d9-9043-1855935923d9"
+    publicKey: "QRUZEXPW"
   configMap:
     name: ops-manager-configmap
-  baseUrl: "http://finnova-ops-manager-svc.mongodb.svc.cluster.local:8080"
-  orgId: "621701ff6433037e690c6015"
+  baseUrl: "http://finnova-ops-manager-svc.finnova-ops-manager.svc.cluster.local:8080"
+  orgId: "62170d239121f020bd55f344"
 
-namespace: mongodb-dev
+namespace: finnova-dev
