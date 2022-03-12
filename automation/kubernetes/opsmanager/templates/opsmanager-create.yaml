@@ -1,0 +1,40 @@
+apiVersion: mongodb.com/v1
+kind: MongoDBOpsManager
+metadata:
+  name: {{ .Values.opsmanager.name }}
+  namespace: {{ .Values.namespace }}
+  annotations:
+    helm.sh/hook: post-install
+spec:
+  replicas: {{ .Values.opsmanager.replicas }}
+  version: {{ .Values.opsmanager.version }}
+  adminCredentials: {{ .Values.opsmanager.adminCredentials }}
+  externalConnectivity:
+    type: {{ .Values.opsmanager.externalConnectivity.type }}
+  applicationDatabase:
+    members: 3
+    version: {{ .Values.opsmanager.appdb.version }}
+    # podSpec:
+    #   persistence:
+    #     single:
+    #       storage: {{ .Values.opsmanager.appdb.storage }}
+    #       storageClass: {{ .Values.opsmanager.appdb.storageClass }}
+  configuration:
+    {{- with .Values.configuration -}}
+    {{- toYaml . | nindent 4 -}}
+    {{- end -}}
+  {{- if .Values.opsmanager.backup.enabled -}}
+  backup:
+    enabled: {{ .Values.opsmanager.backup.enabled }}
+    {{- with .Values.opsmanager.backup.oplogs -}}
+    opLogStores:
+    - name: {{ .Values.opsmanager.backup.oplogs.name }}
+      mongodbResourceRef:
+        name: {{ .Values.opsmanager.backup.name }}
+    {{- end -}}
+    {{- with .Values.opsmanager.backup.blockStores -}}
+    blockStores:
+    - {{- toYaml . | nindent 6 -}}
+    {{- end -}}
+  {{- end -}}
+  

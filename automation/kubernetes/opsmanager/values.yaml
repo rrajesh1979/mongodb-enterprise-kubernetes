@@ -1,0 +1,42 @@
+# Default values for mongo-kubernetes-operator-demo.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: worldline-ops-manager
+
+opsmanager:
+  name: worldline-ops-manager
+  adminCredentials: ops-manager-admin-secret
+  replicas: 1
+  version: 5.0.0
+  appdb:
+    version: 5.0.5-ent
+    # storage: 2Gi
+    # storageClass: standard
+  secret:
+    name: ops-manager-admin-secret
+  externalConnectivity:
+    type: LoadBalancer
+  backup:
+    name: mongodb-bkp-cluster
+    enabled: false
+    oplogs:
+      name: oplog1
+  admin:
+    username: pimongo-admin
+    password: p1m0ngo-@dm1n
+
+backup:
+  enabled: false
+  blockStores:
+  oplogs:
+
+configuration: 
+  mms.ignoreInitialUiSetup: "true"
+  mms.fromEmailAddr: "jane.doe@example.com"
+  mms.replyToEmailAddr: "jane.doe@example.com"
+  mms.adminEmailAddr: "jane.doe@example.com"
+  mms.mail.transport: "smtp"
+  mms.mail.hostname: "example.com"
+  mms.mail.port: "25"
+

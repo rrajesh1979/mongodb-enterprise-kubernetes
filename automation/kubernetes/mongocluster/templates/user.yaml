@@ -1,0 +1,24 @@
+apiVersion: mongodb.com/v1
+kind: MongoDBUser
+metadata:
+  name: "{{ .Values.user.name }}"
+  namespace: "{{ .Values.namespace }}"
+spec:
+  passwordSecretKeyRef:
+    name: "{{ .Values.password.name }}"
+    # Match to metadata.name of the User Secret
+    key: password
+  username: "{{ .Values.user.name }}"
+  db: "admin" #
+  mongodbResourceRef:
+    name: "{{ .Values.mongocluster.name }}"
+    # Match to MongoDB resource using authenticaiton
+  roles:
+    - db: admin
+      name: clusterAdmin
+    - db: admin
+      name: dbAdminAnyDatabase
+    - db: admin
+      name: userAdminAnyDatabase
+    - db: admin
+      name: readWriteAnyDatabase

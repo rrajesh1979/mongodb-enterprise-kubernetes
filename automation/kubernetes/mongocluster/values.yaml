@@ -1,0 +1,27 @@
+# Default values for mongocluster.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: worldline-dev
+
+password:
+  name: user-dev-password
+  value: Passw0rd-1
+
+user:
+  name: user-dev
+
+mongocluster:
+  name: payment-dev
+  version: 5.0.5-ent
+  members: 3
+
+opsmanager:
+  secret:
+    name: ops-manager-api-key
+    user: "kibceohv"
+    publicApiKey: "f34e8ba1-9029-4965-b10a-c22d014d1ea7"
+  configMap:
+    name: ops-manager-configmap
+  baseUrl: "http://worldline-ops-manager-svc.worldline-ops-manager.svc.cluster.local:8080"
+  orgId: "622be3ca260454616daab29d"
