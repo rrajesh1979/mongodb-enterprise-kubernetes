@@ -2,10 +2,10 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-namespace: worldline-ops-manager
+namespace: demo-ops-manager
 
 opsmanager:
-  name: worldline-ops-manager
+  name: demo-ops-manager
   adminCredentials: ops-manager-admin-secret
   replicas: 1
   version: 5.0.0
@@ -31,7 +31,7 @@ backup:
   blockStores:
   oplogs:
 
-configuration: 
+configuration:
   mms.ignoreInitialUiSetup: "true"
   mms.fromEmailAddr: "jane.doe@example.com"
   mms.replyToEmailAddr: "jane.doe@example.com"
@@ -39,4 +39,3 @@ configuration:
   mms.mail.transport: "smtp"
   mms.mail.hostname: "example.com"
   mms.mail.port: "25"
-
